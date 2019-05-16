@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.xiao">
+    <class name="Student" table="T_student">
+        <id name="id">
+            <generator class="uuid"></generator>
+        </id>
+
+        <property name="sname" column="sname"></property>
+        <!--
+            映射多对一的关联关系。 使用 many-to-one 来映射多对一的关联关系
+            name: N端对应1端的属性名字
+            class: 1端对应的类
+            column: 一那一端在多的一端对应的数据表中的外键的名字
+        -->
+        <many-to-one name="classess" class="Classess" column="cid"/>
+    </class>
+</hibernate-mapping>

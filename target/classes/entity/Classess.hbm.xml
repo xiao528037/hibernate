@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.xiao">
+    <class name="Classess" table="Classess">
+        <id name="id" column="cid">
+            <generator class="uuid"></generator>
+        </id>
+        <property name="name" column="name"></property>
+        <!-- 映射 1 对多的那个集合属性 -->
+        <!-- set: 映射 set 类型的属性, name:一的这一端关联的多的那一端的属性名,
+        table: set 中的元素对应的记录放在哪一个数据表中.
+        该值需要和多对一的多的那个表的名字一致 -->
+        <!-- inverse true放弃维护 flase维护-->
+        <set name="stu" table="T_student" cascade="save-update,delete" inverse="true">
+            <!-- 指定关联的表中的外键列的名字 -->
+            <key column="cid"></key>
+            <!-- 指定映射类型 -->
+            <one-to-many class="Student"></one-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
