@@ -13,7 +13,7 @@
         table: set 中的元素对应的记录放在哪一个数据表中.
         该值需要和多对一的多的那个表的名字一致 -->
         <!-- inverse true放弃维护 flase维护-->
-        <set name="stu" table="T_student" cascade="save-update,delete" inverse="true">
+        <set name="stu" table="T_student" cascade="save-update,delete">
             <!-- 指定关联的表中的外键列的名字 -->
             <key column="cid"></key>
             <!-- 指定映射类型 -->

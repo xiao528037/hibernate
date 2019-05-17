@@ -11,6 +11,15 @@ public class Student {
         this.sname = sname;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", sname='" + sname + '\'' +
+                ", classess=" + classess +
+                '}';
+    }
+
     private Classess classess;
 
     public Student() {

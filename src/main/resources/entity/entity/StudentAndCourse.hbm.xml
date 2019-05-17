@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.entity.StudentTwo" table="student">
+        <id name="sid" column="sid">
+            <generator class="increment"/>
+        </id>
+        <property name="sname"/>
+        <!-- 要查询所有course，就需要通过连接表，所以申明连接表的名称 -->
+        <set name="courseSet" table="student_course" cascade="save-update,delete">
+            <!-- 本实体类在连接表中的外键名称，让hibernate知道连接表或者那个有一个外键为s_id的指向本实体类-->
+            <key column="s_id"></key>
+            <!-- 多对多映射管理，映射类和其映射类在连接表中的外键名名称-->
+            <many-to-many class="com.entity.Course" column="c_id"></many-to-many>
+        </set>
+    </class>
+
+    <class name="com.entity.Course" table="course">
+        <id name="cid" column="cid">
+            <generator class="increment"/>
+        </id>
+        <property name="cname" column="cname"></property>
+        <set name="studentSet" table="student_course" cascade="save-update,delete">
+            <key column="c_id"></key>
+            <many-to-many column="s_id" class="com.entity.StudentTwo"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
